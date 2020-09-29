@@ -18,16 +18,18 @@ import * as ACTION from "../../../services/actions";
 function Content(props) {
   const { classes } = props;
   const [MAKYHD, setMAKYHD] = useState("");
-  const [resources, setresources] = useState([]);
+  const [resources, setresources] = useState(
+    JSON.parse(localStorage.getItem("resources")) || []
+  );
 
   const handleChange = (e) => {
     setMAKYHD(e.target.value);
   };
 
   const handleClick = async () => {
-    const rescources = await ACTION.getResources(MAKYHD);
-    if (rescources.Data)
-      switch (rescources.Data) {
+    const resources = await ACTION.getResources(MAKYHD);
+    if (resources.Data)
+      switch (resources.Data) {
         case "ERR1":
           toast.error("Sai tài khoản mật khẩu");
           setresources([]);
@@ -41,7 +43,10 @@ function Content(props) {
           setresources([]);
           break;
       }
-    else setresources(rescources);
+    else {
+      setresources(resources);
+      localStorage.setItem("resources", JSON.stringify(resources));
+    }
   };
 
   return (

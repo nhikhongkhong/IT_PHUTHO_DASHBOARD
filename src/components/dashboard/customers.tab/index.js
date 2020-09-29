@@ -18,7 +18,9 @@ function Customer(props) {
   const { classes } = props;
   const [MAKYHD, setMAKYHD] = useState("");
   const [MATUYEN, setMATUYEN] = useState("");
-  const [customerList, setCustomerList] = useState([]);
+  const [customerList, setCustomerList] = useState(
+    JSON.parse(localStorage.getItem("customerList")) || []
+  );
 
   const handleChangeMKHD = (e) => {
     setMAKYHD(e.target.value);
@@ -44,7 +46,10 @@ function Customer(props) {
           setCustomerList([]);
           break;
       }
-    else setCustomerList(customerList);
+    else {
+      setCustomerList(customerList);
+      localStorage.setItem("customerList", JSON.stringify(customerList));
+    }
   };
 
   return (

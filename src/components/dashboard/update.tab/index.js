@@ -80,6 +80,12 @@ function Update() {
     }
   };
 
+  const handleReset = () => {
+    setCsmoi("");
+    setIdtt("");
+    setMakh("");
+    setMakyhd("");
+  };
   const classes = useStyles();
 
   return (
@@ -98,6 +104,7 @@ function Update() {
               <TextField
                 onChange={(e) => handleChange(e, "makh")}
                 fullWidth
+                value={makh}
                 name="makh"
                 variant="outlined"
                 required
@@ -110,6 +117,7 @@ function Update() {
               <TextField
                 onChange={(e) => handleChange(e, "makyhd")}
                 fullWidth
+                value={makyhd}
                 variant="outlined"
                 required
                 id="makyhd"
@@ -120,6 +128,7 @@ function Update() {
             <Grid item xs={12}>
               <TextField
                 onChange={(e) => handleChange(e, "idtt")}
+                value={idtt}
                 fullWidth
                 variant="outlined"
                 required
@@ -131,6 +140,7 @@ function Update() {
             <Grid item xs={12}>
               <TextField
                 onChange={(e) => handleChange(e, "csmoi")}
+                value={csmoi}
                 fullWidth
                 variant="outlined"
                 required
@@ -149,6 +159,15 @@ function Update() {
             className={classes.submit}
           >
             Update
+          </Button>
+          <Button
+            onClick={handleReset}
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Reset
           </Button>
           <ToastContainer
             position="bottom-right"
